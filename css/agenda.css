@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+:root{
+    --cor1: #D9A54C;
+    --cor2: #63D94C;
+    --cor3: #cf1c1c;
+    --cor4: #e43a3a;
+    --cor5: #000;
+    --cor6: #fff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+section{
+    background-color: white;
+    box-shadow: 0px 2px 5px #000000a1;
+    border-radius: 12px;
+    margin: 5px;
+}
+
+p{  
+    text-align: center;
+    width: 250px;
+    padding: 10px 5px;
+}
+
+span{
+    font-size: 1.2em;
+    text-transform: uppercase;
+    text-align: center;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.conteiner-mensagem{
+    position: fixed;
+    transform: translateX(-50%);
+    top: -200px;
+    left: 50%;
+    transition: 1s;
+}
+
+.conteiner-registro-time{
+    background-color: var(--cor1);
+    text-align: center;
+    padding: 5px;
+    width: 150px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+input[type="time"]{
+    background-color: transparent;
+    color: white;
+    width: 82px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+textarea{
+    background-color: transparent;
+    width: 150px;
+    height: 100px;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    resize: none;
+    border: none;
+    outline: none;
+}
+
+.conteiner-buttons{
+    display: flex;
+    width: 100%;
+}
+
+.conteiner-buttons > button{
+    color: white;
+    font-size: 16px;
+    width: 50%;
+    height: 35px;
+    padding: 5px 0px;
+    border: none;
+    cursor: pointer;
+}
+
+.conteiner-registro .conteiner-buttons:last-of-type{
+    display: none;
+}
+
+.conteiner-buttons > button:first-child{
+    background-color: var(--cor1);
+    border-bottom-left-radius: 10px;
+}
+
+.conteiner-buttons > button:last-child{
+    background-color: var(--cor3);
+    border-bottom-right-radius: 10px;
+}
+
+.conteiner-buttons > button:hover{
+    font-size: 1em;
+    text-shadow: 1px 1px 2px #000000a1;
+}
+
+.conteiner-buttons > button:first-child:active{
+    background-color: var(--cor2);
+}
+
+.conteiner-buttons > button:last-child:active{
+    background-color: var(--cor4);
+}
