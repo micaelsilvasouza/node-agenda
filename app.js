@@ -18,6 +18,9 @@ app.set("view engine", "handlebars")
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(bodyparser.json())
 
+//Configurando arquivos estaticos
+app.use(express.static("public"))
+
 //Página do calendário
 app.get("/", (req, res)=>{
     res.sendFile(__dirname + "/index.html")
@@ -48,24 +51,6 @@ app.post("/agenda", (req, res)=>{
     }
 })
 
-//CSS da página calendário
-app.get("/css-calendario", (req, res)=>{
-    res.sendFile(__dirname + "/css/calendario.css")
-})
 
-//CSS da página agenda
-app.get("/css-agenda", (req, res)=>{
-    res.sendFile(__dirname + "/css/agenda.css")
-})
-
-//JS da página calendário
-app.get("/js-calendario", (req, res)=>{
-    res.sendFile(__dirname + "/js/calendario.js")
-})
-
-//JS da página agenda
-app.get("/js-agenda", (req, res)=>{
-    res.sendFile(__dirname + "/js/agenda.js")
-})
-
-app.listen(8081, ()=>{console.log("Servidor Rodando")})
+const PORT = 8081
+app.listen(PORT, ()=>{console.log("Servidor Rodando")})
