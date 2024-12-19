@@ -2,21 +2,21 @@
 <form id="form-agenda" action="./agenda" method="post">
     <input type="hidden" name="date" value="{{data}}">
     <input type="hidden" name="id" id="id-form">
-    <input type="hidden" name="hour" id="horario-form">
-    <input type="hidden" name="description" id="descricao-form">
+    <input type="hidden" name="hour" id="hour-form">
+    <input type="hidden" name="description" id="description-form">
 </form>
 
 <main>
-    <section class="conteiner-mensagem" id="conteiner-mensagem">
+    <section class="conteiner-message" id="conteiner-message">
         <p>Uma mensagem de confimação</p>
         <div class="conteiner-buttons">
-            <button title="button" type="button" id="bt-A-mensagem">Salvar</button>
-            <button title="button" type="button" id="bt-B-mensagem">Cancelar</button>
+            <button title="button" type="button" id="bt-A-message">Salvar</button>
+            <button title="button" type="button" id="bt-B-message">Cancelar</button>
         </div>
     </section>
     {{#each registros}}
-    <section class="conteiner-registro" id-registro="{{this.dataValues.id}}">
-        <div class='conteiner-registro-time'>
+    <section class="conteiner-register" id-registro="{{this.dataValues.id}}">
+        <div class='conteiner-register-time'>
             <input title='hora' type='time' value="{{this.dataValues.horario}}" disabled>
         </div>
         <div>

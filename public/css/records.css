@@ -46,7 +46,7 @@ span{
     left: 50%;
 }
 
-.conteiner-mensagem{
+.conteiner-message{
     position: fixed;
     transform: translateX(-50%);
     top: -200px;
@@ -54,7 +54,7 @@ span{
     transition: 1s;
 }
 
-.conteiner-registro-time{
+.conteiner-register-time{
     background-color: var(--cor1);
     text-align: center;
     padding: 5px;
@@ -98,7 +98,7 @@ textarea{
     cursor: pointer;
 }
 
-.conteiner-registro .conteiner-buttons:last-of-type{
+.conteiner-register .conteiner-buttons:last-of-type{
     display: none;
 }
 
