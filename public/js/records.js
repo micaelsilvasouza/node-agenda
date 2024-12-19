@@ -1,7 +1,7 @@
 const form_agenda = document.getElementById("form-agenda")
-const id_form = document.getElementById("id-form")
-const horario_form = document.getElementById("horario-form")
-const descricao_form = document.getElementById("descricao-form")
+const id= document.getElementById("id-form")
+const hour= document.getElementById("hour-form")
+const description = document.getElementById("description-form")
 
 var input_time_original_valor = ""
 var textarea_original_valor = ""
@@ -46,8 +46,8 @@ function sendUpdate(buttonElemento) {
     let textarea = conteiner_registro.children[1].children[0]
 
     if(textarea.value.length > 0){
-        id_form.value = conteiner_registro.getAttribute("id-registro")
-        horario_form.value = input_time.value
+        id.value = conteiner_registro.getAttribute("id-registro")
+        horariovalue = input_time.value
         descricao_form.value = textarea.value
         showMessage("Atualizar Registro", "Atualizar", "Cancelar", ()=>{form_agenda.submit()})
     }else{
@@ -58,7 +58,7 @@ function sendUpdate(buttonElemento) {
 
 function sendDelete(buttonElemento) {
     let conteiner_registro = buttonElemento.parentElement.parentElement
-    id_form.value = conteiner_registro.getAttribute("id-registro")
+    id.value = conteiner_registro.getAttribute("id-registro")
     
     showMessage("Excluir Registro", "Excluir", "Cancelar", ()=>{form_agenda.submit()})
 }
