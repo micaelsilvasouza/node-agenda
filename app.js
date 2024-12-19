@@ -4,9 +4,9 @@ const app = express()
 const handlebars = require("express-handlebars")
 const bodyparser = require("body-parser")
 
-const exibirRegistroAgenda = require("./node/node-funcoes/selecionar")
-const inserirRegistroAgenda = require("./node/node-funcoes/inserir")
-const atualizarRegistroAgenda = require("./node/node-funcoes/atualizar")
+const exibirRegistroAgenda = require("./node/node-funcoes/select")
+const inserirRegistroAgenda = require("./node/node-funcoes/insert")
+const atualizarRegistroAgenda = require("./node/node-funcoes/update")
 const deletarRegistroAgenda = require("./node/node-funcoes/deletar")
 
 
@@ -23,7 +23,7 @@ app.use(express.static("public"))
 
 //Página do calendário
 app.get("/", (req, res)=>{
-    res.render("calendario")
+    res.render("calendar")
 })
 
 //Ações da agenda

@@ -1,4 +1,4 @@
-const Registros = require("../node-db/Registro")
+const Registros = require("../node-db/Records")
 const {randomBytes} = require("crypto")
 
 function inserirRegistroAgenda(data, horario, descricao, callback) {

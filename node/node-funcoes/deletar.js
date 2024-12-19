@@ -1,4 +1,4 @@
-const Registro = require("../node-db/Registro");
+const Registro = require("../node-db/Records");
 
 function deletarRegistroAgenda(id, callback) {
     Registro.destroy({where: {id: id}})
