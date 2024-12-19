@@ -2,15 +2,15 @@
 
 <link rel="stylesheet" href="css/calendar.css">
 <form id="form-agenda" action="./agenda" method="post" target="iframe-agenda">
-    <input id="data-form" type="hidden" name="date">
-    <input id="horario-form" type="hidden" name="hour">
-    <input id="descricao-form" type="hidden" name="description">
+    <input id="date-form" type="hidden" name="date">
+    <input id="hour-form" type="hidden" name="hour">
+    <input id="description-form" type="hidden" name="description">
 </form>
 <main>
     <article>
         <section>
             <div>
-                <select id="sel-meses" title="meses">
+                <select id="sel-month" title="meses">
                     <option value="00" selected>Janeiro</option>
                     <option value="01">Fevereiro</option>
                     <option value="02">Março</option>
@@ -24,8 +24,8 @@
                     <option value="10">Novembro</option>
                     <option value="11">Dezembro</option>
                 </select>
-                <select title="ano" id="sel-ano"></select>
-                <button id="bt-ver-registros">registros</button>
+                <select title="ano" id="sel-year"></select>
+                <button id="bt-show-records">registros</button>
             </div>
             <table>
                 <thead>
@@ -39,23 +39,23 @@
                         <th>SAB</th>
                     </tr>
                 </thead>
-                <tbody id="dias-mes"></tbody>
+                <tbody id="days"></tbody>
             </table>
         </section>
-        <section id="conteiner-add-registro"> <!--Mudar nota para registro em todos os lugares-->
+        <section id="conteiner-add-register"> <!--Mudar nota para registro em todos os lugares-->
             <div>
-                <input title="hora" type="time" id="horario-input" value="08:00" required>
+                <input title="hora" type="time" id="hour-input" value="08:00" required>
             </div>
             <div>
-                <textarea placeholder="Digite uma registro" id="descricao-input"  maxlength="100" required></textarea>
+                <textarea placeholder="Digite uma registro" id="description-input"  maxlength="100" required></textarea>
             </div>
             <div>
-                <button type="submit" id="guardar">+</button>
+                <button type="submit" id="recorder">+</button>
             </div>
         </section>
     </article>
-    <aside id="registros-agenda">
-        <button id="bt-esconder-registros">X</button>
+    <aside id="records-agenda">
+        <button id="bt-hide-records">X</button>
         <iframe title="iframe-agenda" id="iframe-agenda" name="iframe-agenda"></iframe>
     </aside>
 </main>

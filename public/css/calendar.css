@@ -31,14 +31,14 @@ h1{
 article, aside{
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
 }
 
 article > section:first-of-type{
     height: 260px;
 }
 
-select, #bt-ver-registros, #bt-esconder-registros{
+select, #bt-show-records, #bt-hide-records{
     background-color: var(--cor1);
     color: var(--cor6);
     text-align: center;
@@ -47,12 +47,12 @@ select, #bt-ver-registros, #bt-esconder-registros{
     border-radius: 5px;
 }
 
-#bt-ver-registros, #bt-esconder-registros{
+#bt-show-records, #bt-hide-records{
     display: none;
     float: right;
 }
 
-#bt-ver-registros:hover, #bt-ver-registros:active, #bt-esconder-registros:hover, #bt-esconder-registros:active{
+#bt-show-records:hover, #bt-show-records:active, #bt-hide-records:hover, #bt-hide-records:active{
     background-color: var(--cor4);
 }
 
@@ -77,20 +77,20 @@ td > button:hover{
     outline: none;
 }
 
-td > button.selecionado{
+td > button.selected{
     background-color: var(--cor1);
     color: var(--cor6);
     box-shadow: 1px 1px 3px #000000a1;
 }
 
-#conteiner-add-registro{
+#conteiner-add-register{
     background-color: white;
     box-shadow: 0px 2px 5px #000000a1;
     border-radius: 12px;
     margin-left: 15px;
 }
 
-#conteiner-add-registro > div:first-of-type{
+#conteiner-add-register > div:first-of-type{
     background-color: var(--cor1);
     text-align: center;
     padding: 5px;
@@ -98,7 +98,7 @@ td > button.selecionado{
     border-radius: 10px 10px 0px 0px;
 }
 
-#conteiner-add-registro  input[type="time"]{
+#conteiner-add-register  input[type="time"]{
     background-color: transparent;
     color: white;
     width: 82px;
@@ -107,11 +107,11 @@ td > button.selecionado{
     cursor: pointer;
 }
 
-#conteiner-add-registro  input[type="time"]:hover{
+#conteiner-add-register  input[type="time"]:hover{
     transform: scale(1.1);
 }
 
-#conteiner-add-registro  textarea{
+#conteiner-add-register  textarea{
     background-color: transparent;
     width: 250px;
     height: 190px;
@@ -124,7 +124,7 @@ td > button.selecionado{
     border-radius: 0px 0px 10px 10px;
 }
 
-#conteiner-add-registro #guardar{
+#conteiner-add-register #recorder{
     background-color: var(--cor1);
     color: white;
     width: 100%;
@@ -135,12 +135,12 @@ td > button.selecionado{
     cursor: pointer;
 }
 
-#conteiner-add-registro #guardar:hover{
+#conteiner-add-register #recorder:hover{
     font-size: 1.2em;
     text-shadow: 1px 1px 2px #000000a1;
 } 
 
-#conteiner-add-registro #guardar:active{
+#conteiner-add-register #recoder:active{
     background-color: var(--cor2);
 }
 
@@ -152,11 +152,11 @@ iframe{
 }
     
 @media screen and (max-width: 630px) and (max-height: 860px) {
-    #bt-ver-registros{
+    #bt-show-records{
         display: inline;
     }
 
-    #registros-agenda{
+    #records-agenda{
         background-color: var(--cor6);
         width: 0;
         height: 100dvh;

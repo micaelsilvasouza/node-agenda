@@ -1,139 +1,139 @@
-const sel_month = document.getElementById("sel-meses")
-const sel_ano = document.getElementById("sel-ano")
-const dias_mes = document.getElementById("dias-mes")
-const guardar = document.getElementById("guardar")
-const bt_ver_registros = document.getElementById("bt-ver-registros")
-const bt_esconder_registros = document.getElementById("bt-esconder-registros")
-const registros_agenda = document.getElementById("registros-agenda")
+const sel_month = document.getElementById("sel-month")
+const sel_year = document.getElementById("sel-year")
+const days = document.getElementById("days")
+const recorder = document.getElementById("recorder")
+const bt_show_records = document.getElementById("bt-show-records")
+const bt_hide_records = document.getElementById("bt-hide-records")
+const records_agenda = document.getElementById("records-agenda")
 
 const form_agenda = document.getElementById("form-agenda")
-const data_form = document.getElementById("data-form")
-const horario_form = document.getElementById("horario-form")
-const descricao_form = document.getElementById("descricao-form")
+const date_form = document.getElementById("date-form")
+const hour_form = document.getElementById("hour-form")
+const description_form = document.getElementById("description-form")
 
-const horario_input = document.getElementById("horario-input")
-const descricao_input = document.getElementById("descricao-input")
+const hour_input = document.getElementById("hour-input")
+const description_input = document.getElementById("description-input")
 
-const tot_dias = [31,28,31,30,31,30,31,31,30,31,30,31]
-const data_atual = new Date()
+const tot_days = [31,28,31,30,31,30,31,31,30,31,30,31]
+const current_date = new Date()
 
 window.onload = ()=>{
-    sel_month.children[data_atual.getMonth()].selected = true
-    for (let ano = parseInt(data_atual.getFullYear()); ano <= (parseInt(data_atual.getFullYear()) + 10); ano++) {
+    sel_month.children[current_date.getMonth()].selected = true
+    for (let year = parseInt(current_date.getFullYear()); year <= (parseInt(current_date.getFullYear()) + 10); year++) {
         let opc = document.createElement("option")
-        opc.value = ano
-        opc.text = ano
-        sel_ano.appendChild(opc)
+        opc.value = year
+        opc.text = year
+        sel_year.appendChild(opc)
     }
-    sel_ano.value = data_atual.getFullYear()
-    data_form.value = `${data_atual.getFullYear()}-${data_atual.getMonth() + 1}-${data_atual.getDate()}`
+    sel_year.value = current_date.getFullYear()
+    date_form.value = `${current_date.getFullYear()}-${current_date.getMonth() + 1}-${current_date.getDate()}`
     form_agenda.submit()
     loadCalendar()
 }
 
 //alterando estado de visualização das registros, quando a tela estiver em um tamanho menor
-bt_ver_registros.onclick = bt_ver_registros.ontouchend = ()=>{
+bt_show_records.onclick = bt_show_records.ontouchend = ()=>{
     if(innerWidth <= 630 && innerHeight <= 860){
-        registros_agenda.style.width = "70dvw"
-        bt_esconder_registros.style.display = "inline"
+        records_agenda.style.width = "70dvw"
+        bt_hide_records.style.display = "inline"
     }
 }
 
-bt_esconder_registros.onclick = bt_esconder_registros.ontouchend = ()=>{
+bt_hide_records.onclick = bt_hide_records.ontouchend = ()=>{
     if(innerWidth <= 630 && innerHeight <= 860){
-        registros_agenda.style.width = "0px"
-        bt_esconder_registros.style.display = "none"
+        records_agenda.style.width = "0px"
+        bt_hide_records.style.display = "none"
     }
 }
 
-guardar.onclick = ()=>{
-    data_form.value = `${data_atual.getFullYear()}-${data_atual.getMonth() + 1}-${data_atual.getDate()}`
-    horario_form.value = horario_input.value
-    if(descricao_input.value.length > 1){
-        descricao_form.value = descricao_input.value
-        descricao_input.value = ""
+recorder.onclick = ()=>{
+    date_form.value = `${current_date.getFullYear()}-${current_date.getMonth() + 1}-${current_date.getDate()}`
+    hour_form.value = hour_input.value
+    if(description_input.value.length > 1){
+        description_form.value = description_input.value
+        description_input.value = ""
         form_agenda.submit()
     }else{
-        descricao_input.placeholder = "É preciso digitar uma descrição, para adicionar um novo registro"
-        descricao_input.focus()
+        description_input.placeholder = "É preciso digitar uma descrição, para adicionar um novo registro"
+        description_input.focus()
     }
 }
 
 sel_month.addEventListener("change", alterMonth)
 
-sel_ano.addEventListener("change", alterYear)
+sel_year.addEventListener("change", alterYear)
 
 function alterMonth() {
-    data_atual.setMonth(parseInt(this.value))
+    current_date.setMonth(parseInt(this.value))
     loadCalendar()
     searchRecords(false)
 }
 
 function alterYear() {
-    data_atual.setUTCFullYear(parseInt(this.value))
+    current_date.setUTCFullYear(parseInt(this.value))
     loadCalendar()
     searchRecords(false)
 }
 
 function loadCalendar() {
-    dias_mes.innerHTML = ""
-    let quant_dias = calculateNumberDays()
-    let dia_selecionado = data_atual.getDate()
+    days.innerHTML = ""
+    let number_days = calculateNumberDays()
+    let selected_day = current_date.getDate()
 
-    data_atual.setDate(1) //Configurando para o 1° dia do mês, para obter o dia da semana que o mês começa
+    current_date.setDate(1) //Configurando para o 1° dia do mês, para obter o dia da semana que o mês começa
     
-    let dia_sem = data_atual.getDay()
-    let dia = 1
+    let week_day = current_date.getDay()
+    let day = 1
 
-    for (let i = 0; i < Math.ceil((quant_dias + dia_sem) / 7); i++) {
+    for (let i = 0; i < Math.ceil((number_days + week_day) / 7); i++) {
         const tr = document.createElement("tr");
         for (let o = 1; o <= 7; o++) {
             const td = document.createElement("td");    
-            if(!(o <= dia_sem && i == 0) && dia <= quant_dias){
+            if(!(o <= week_day && i == 0) && day <= number_days){
                 let bt = document.createElement("button")
-                bt.textContent = dia
-                bt.value = dia
-                bt.className = dia == dia_selecionado ? "selecionado" : ""
+                bt.textContent = day
+                bt.value = day
+                bt.className = day == selected_day ? "selected" : ""
                 bt.addEventListener("click", searchRecords)
                 bt.addEventListener("touchend", searchRecords)
                 td.appendChild(bt)
-                dia++
+                day++
             }
             tr.appendChild(td)      
         }
-        dias_mes.appendChild(tr)
-        data_atual.setDate(dia_selecionado) //Configurando o dia para o dia que estava selecioando
+        days.appendChild(tr)
+        current_date.setDate(selected_day) //Configurando o dia para o dia que estava selecioando
     }
 }
 
 function calculateNumberDays() {
-    let mes = data_atual.getMonth()
-    let ano = data_atual.getFullYear()
-    let teste = /\d{2}00/
+    let month = current_date.getMonth()
+    let year = current_date.getFullYear()
+    let test = /\d{2}00/
 
-    if (mes == 1 && ((teste.test(ano.toString()) && ano % 400 === 0) || (!teste.test(ano.toString) && ano % 4 === 0))) {
+    if (month == 1 && ((test.test(year.toString()) && year % 400 === 0) || (!test.test(year.toString()) && year % 4 === 0))) {
         return 29
     }else{
-        return tot_dias[mes]
+        return tot_days[month]
     }
 }
 
 function searchRecords(setdate = true) {
     if (setdate) { //Caso quando a busca é feita usando um dia, e não o mês ou o ano
-        data_atual.setDate(parseInt(this.value))
+        current_date.setDate(parseInt(this.value))
         selectDate(this)
     }
     
-    data_form.value = `${data_atual.getFullYear()}-${data_atual.getMonth() + 1}-${data_atual.getDate()}`
-    descricao_form.value = ""
-    horario_form.value = ""
+    date_form.value = `${current_date.getFullYear()}-${current_date.getMonth() + 1}-${current_date.getDate()}`
+    description_form.value = ""
+    hour_form.value = ""
     form_agenda.submit()
 }
 
-function selectDate(btselecionado) {
+function selectDate(btselected) {
     for(let button of document.querySelectorAll("button")){
-        if(button === btselecionado){
-            button.className = "selecionado"
+        if(button === btselected){
+            button.className = "selected"
         }else{
             button.className = ""
         }
