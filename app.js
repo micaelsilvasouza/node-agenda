@@ -11,7 +11,7 @@ const deletarRegistroAgenda = require("./node/node-funcoes/deletar")
 
 
 //Configurando handlebars template engine
-app.engine("handlebars", handlebars.engine({defaultLayout: "agenda"}))
+app.engine("handlebars", handlebars.engine({defaultLayout: "main"}))
 app.set("view engine", "handlebars")
 
 //Configurando body-parser
@@ -23,7 +23,7 @@ app.use(express.static("public"))
 
 //Página do calendário
 app.get("/", (req, res)=>{
-    res.sendFile(__dirname + "/index.html")
+    res.render("calendario")
 })
 
 //Ações da agenda

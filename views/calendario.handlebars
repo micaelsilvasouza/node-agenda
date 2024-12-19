@@ -1,0 +1,63 @@
+<h1>Agenda</h1>
+
+<link rel="stylesheet" href="css/calendario.css">
+<form id="form-agenda" action="./agenda" method="post" target="iframe-agenda">
+    <input id="data-form" type="hidden" name="data">
+    <input id="horario-form" type="hidden" name="horario">
+    <input id="descricao-form" type="hidden" name="descricao">
+</form>
+<main>
+    <article>
+        <section>
+            <div>
+                <select id="sel-meses" title="meses">
+                    <option value="00" selected>Janeiro</option>
+                    <option value="01">Fevereiro</option>
+                    <option value="02">Março</option>
+                    <option value="03">Abril</option>
+                    <option value="04">Maio</option>
+                    <option value="05">Junho</option>
+                    <option value="06">Julho</option>
+                    <option value="07">Agosto</option>
+                    <option value="08">Setembro</option>
+                    <option value="09">Outubro</option>
+                    <option value="10">Novembro</option>
+                    <option value="11">Dezembro</option>
+                </select>
+                <select title="ano" id="sel-ano"></select>
+                <button id="bt-ver-registros">registros</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>DOM</th>
+                        <th>SEG</th>
+                        <th>TER</th>
+                        <th>QUA</th>
+                        <th>QUI</th>
+                        <th>SEX</th>
+                        <th>SAB</th>
+                    </tr>
+                </thead>
+                <tbody id="dias-mes"></tbody>
+            </table>
+        </section>
+        <section id="conteiner-add-registro"> <!--Mudar nota para registro em todos os lugares-->
+            <div>
+                <input title="hora" type="time" id="horario-input" value="08:00" required>
+            </div>
+            <div>
+                <textarea placeholder="Digite uma registro" id="descricao-input"  maxlength="100" required></textarea>
+            </div>
+            <div>
+                <button type="submit" id="guardar">+</button>
+            </div>
+        </section>
+    </article>
+    <aside id="registros-agenda">
+        <button id="bt-esconder-registros">X</button>
+        <iframe title="iframe-agenda" id="iframe-agenda" name="iframe-agenda"></iframe>
+    </aside>
+</main>
+
+<script src="js/calendario.js"></script>

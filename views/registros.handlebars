@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/agenda.css">
 <form id="form-agenda" action="./agenda" method="post">
     <input type="hidden" name="data" value="{{data}}">
     <input type="hidden" name="id" id="id-form">
@@ -5,14 +6,14 @@
     <input type="hidden" name="descricao" id="descricao-form">
 </form>
 
-<section class="conteiner-mensagem" id="conteiner-mensagem">
-    <p>Uma mensagem de confimação</p>
-    <div class="conteiner-buttons">
-        <button title="button" type="button" id="bt-A-mensagem">Salvar</button>
-        <button title="button" type="button" id="bt-B-mensagem">Cancelar</button>
-    </div>
-</section>
-{{#if registros}}
+<main>
+    <section class="conteiner-mensagem" id="conteiner-mensagem">
+        <p>Uma mensagem de confimação</p>
+        <div class="conteiner-buttons">
+            <button title="button" type="button" id="bt-A-mensagem">Salvar</button>
+            <button title="button" type="button" id="bt-B-mensagem">Cancelar</button>
+        </div>
+    </section>
     {{#each registros}}
     <section class="conteiner-registro" id-registro="{{this.dataValues.id}}">
         <div class='conteiner-registro-time'>
@@ -38,7 +39,9 @@
             <button title="button" type="button" onclick="desabilitarEditar(this)" ontouchend="cancelarEditar(this)">Cancelar</button>
         </div>
     </section>
+    {{else}}
+        <span>Nada agendado para essa data</span>
     {{/each}}
-{{else}}
-    <span>Nada agendado para essa data</span>
-{{/if}}
+</main>
+
+<script src="js/agenda.js"></script>
