@@ -6,7 +6,7 @@ const descricao_form = document.getElementById("descricao-form")
 var input_time_original_valor = ""
 var textarea_original_valor = ""
 
-function habilitarEditar(buttonElemento) {
+function enableEdit(buttonElemento) {
     let conteiner_registro = buttonElemento.parentElement.parentElement
     let input_time = conteiner_registro.children[0].children[0]
     let textarea = conteiner_registro.children[1].children[0]
@@ -24,7 +24,7 @@ function habilitarEditar(buttonElemento) {
     conteiner_buttons[1].style.display = "flex"
 }
 
-function desabilitarEditar(buttonElemento) {
+function disableEdit(buttonElemento) {
     let conteiner_registro = buttonElemento.parentElement.parentElement
     let input_time = conteiner_registro.children[0].children[0]
     let textarea = conteiner_registro.children[1].children[0]
@@ -40,7 +40,7 @@ function desabilitarEditar(buttonElemento) {
     conteiner_buttons[1].style.display = "none"
 }
 
-function enviarAtualizar(buttonElemento) {
+function sendUpdate(buttonElemento) {
     let conteiner_registro = buttonElemento.parentElement.parentElement
     let input_time = conteiner_registro.children[0].children[0]
     let textarea = conteiner_registro.children[1].children[0]
@@ -49,21 +49,21 @@ function enviarAtualizar(buttonElemento) {
         id_form.value = conteiner_registro.getAttribute("id-registro")
         horario_form.value = input_time.value
         descricao_form.value = textarea.value
-        exibirMensagem("Atualizar Registro", "Atualizar", "Cancelar", ()=>{form_agenda.submit()})
+        showMessage("Atualizar Registro", "Atualizar", "Cancelar", ()=>{form_agenda.submit()})
     }else{
         textarea.placeholder = "É preciso digitar uma descrição, para atualizar o registro"
         textarea.focus()
     }
 }
 
-function enviarDeletar(buttonElemento) {
+function sendDelete(buttonElemento) {
     let conteiner_registro = buttonElemento.parentElement.parentElement
     id_form.value = conteiner_registro.getAttribute("id-registro")
     
-    exibirMensagem("Excluir Registro", "Excluir", "Cancelar", ()=>{form_agenda.submit()})
+    showMessage("Excluir Registro", "Excluir", "Cancelar", ()=>{form_agenda.submit()})
 }
 
-function exibirMensagem(mensagem, btA_valor="Salvar", btB_valor="Cancelar", func = ()=>{form_agenda.submit()}) {
+function showMessage(mensagem, btA_valor="Salvar", btB_valor="Cancelar", func = ()=>{form_agenda.submit()}) {
     let conteiner_mensagem = document.getElementById("conteiner-mensagem")
     let btA_mensagem = document.getElementById("bt-A-mensagem")
     let btB_mensagem = document.getElementById("bt-B-mensagem")

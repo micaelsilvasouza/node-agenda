@@ -4,10 +4,10 @@ const app = express()
 const handlebars = require("express-handlebars")
 const bodyparser = require("body-parser")
 
-const exibirRegistroAgenda = require("./node/node-funcoes/select")
-const inserirRegistroAgenda = require("./node/node-funcoes/insert")
-const atualizarRegistroAgenda = require("./node/node-funcoes/update")
-const deletarRegistroAgenda = require("./node/node-funcoes/deletar")
+const {showRecords} = require("./node/node-funcoes/select")
+const {insertRecords} = require("./node/node-funcoes/insert")
+const {updateRecords} = require("./node/node-funcoes/update")
+const {deleteRecords}= require("./node/node-funcoes/delete")
 
 
 //Configurando handlebars template engine
@@ -35,19 +35,19 @@ app.post("/agenda", (req, res)=>{
     let descricao = body.descricao
 
     if ((horario == undefined || horario == "") && (descricao == undefined || descricao == "") &&( id == undefined || id == "") && (data != undefined && data != "")) {
-        exibirRegistroAgenda(res, data)
+        showRecords(res, data)
     }
 
     if((horario != undefined && horario != "") && (descricao != undefined && descricao != "") && (data != undefined && data != "") && (id == undefined || id == "")){
-        inserirRegistroAgenda(data, horario, descricao, ()=>{exibirRegistroAgenda(res, data)})
+        insertRecords(data, horario, descricao, ()=>{showRecords(res, data)})
     }
 
     if((horario != undefined && horario != "") && (descricao != undefined && descricao != "") && (data != undefined && data != "") && (id != undefined && id != "")){
-        atualizarRegistroAgenda(id, horario, descricao, ()=>{exibirRegistroAgenda(res, data)})
+        updateRecords(id, horario, descricao, ()=>{showRecords(res, data)})
     }
 
     if((horario == undefined || horario == "") && (descricao == undefined || descricao == "") && (id != undefined && id != "") && (data != undefined && data != "")){
-        deletarRegistroAgenda(id, ()=>exibirRegistroAgenda(res, data))
+        deleteRecords(id, ()=>showRecords(res, data))
     }
 })
 

@@ -1,7 +1,7 @@
 const Registros = require("../node-db/Records")
 const {randomBytes} = require("crypto")
 
-function inserirRegistroAgenda(data, horario, descricao, callback) {
+function insertRecords(data, horario, descricao, callback) {
     Registros.create({
         id: randomBytes(10).toString("hex"),
         data: data,
@@ -19,4 +19,4 @@ function inserirRegistroAgenda(data, horario, descricao, callback) {
 
 //inserirRegistroAgenda("2024-12-08", "08:00", "ALEATORIA", ()=>{console.log("INSERIDO")})
 
-module.exports = inserirRegistroAgenda
+module.exports = {insertRecords}

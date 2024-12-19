@@ -1,4 +1,4 @@
-const sel_meses = document.getElementById("sel-meses")
+const sel_month = document.getElementById("sel-meses")
 const sel_ano = document.getElementById("sel-ano")
 const dias_mes = document.getElementById("dias-mes")
 const guardar = document.getElementById("guardar")
@@ -18,7 +18,7 @@ const tot_dias = [31,28,31,30,31,30,31,31,30,31,30,31]
 const data_atual = new Date()
 
 window.onload = ()=>{
-    sel_meses.children[data_atual.getMonth()].selected = true
+    sel_month.children[data_atual.getMonth()].selected = true
     for (let ano = parseInt(data_atual.getFullYear()); ano <= (parseInt(data_atual.getFullYear()) + 10); ano++) {
         let opc = document.createElement("option")
         opc.value = ano
@@ -28,7 +28,7 @@ window.onload = ()=>{
     sel_ano.value = data_atual.getFullYear()
     data_form.value = `${data_atual.getFullYear()}-${data_atual.getMonth() + 1}-${data_atual.getDate()}`
     form_agenda.submit()
-    carregarCalendario()
+    loadCalendar()
 }
 
 //alterando estado de visualização das registros, quando a tela estiver em um tamanho menor
@@ -59,25 +59,25 @@ guardar.onclick = ()=>{
     }
 }
 
-sel_meses.addEventListener("change", alterMes)
+sel_month.addEventListener("change", alterMonth)
 
-sel_ano.addEventListener("change", alterAno)
+sel_ano.addEventListener("change", alterYear)
 
-function alterMes() {
+function alterMonth() {
     data_atual.setMonth(parseInt(this.value))
-    carregarCalendario()
-    buscarRegistros(false)
+    loadCalendar()
+    searchRecords(false)
 }
 
-function alterAno() {
+function alterYear() {
     data_atual.setUTCFullYear(parseInt(this.value))
-    carregarCalendario()
-    buscarRegistros(false)
+    loadCalendar()
+    searchRecords(false)
 }
 
-function carregarCalendario() {
+function loadCalendar() {
     dias_mes.innerHTML = ""
-    let quant_dias = calcularQuantidadeDias()
+    let quant_dias = calculateNumberDays()
     let dia_selecionado = data_atual.getDate()
 
     data_atual.setDate(1) //Configurando para o 1° dia do mês, para obter o dia da semana que o mês começa
@@ -94,8 +94,8 @@ function carregarCalendario() {
                 bt.textContent = dia
                 bt.value = dia
                 bt.className = dia == dia_selecionado ? "selecionado" : ""
-                bt.addEventListener("click", buscarRegistros)
-                bt.addEventListener("touchend", buscarRegistros)
+                bt.addEventListener("click", searchRecords)
+                bt.addEventListener("touchend", searchRecords)
                 td.appendChild(bt)
                 dia++
             }
@@ -106,7 +106,7 @@ function carregarCalendario() {
     }
 }
 
-function calcularQuantidadeDias() {
+function calculateNumberDays() {
     let mes = data_atual.getMonth()
     let ano = data_atual.getFullYear()
     let teste = /\d{2}00/
@@ -118,10 +118,10 @@ function calcularQuantidadeDias() {
     }
 }
 
-function buscarRegistros(setdate = true) {
+function searchRecords(setdate = true) {
     if (setdate) { //Caso quando a busca é feita usando um dia, e não o mês ou o ano
         data_atual.setDate(parseInt(this.value))
-        selecionarData(this)
+        selectDate(this)
     }
     
     data_form.value = `${data_atual.getFullYear()}-${data_atual.getMonth() + 1}-${data_atual.getDate()}`
@@ -130,7 +130,7 @@ function buscarRegistros(setdate = true) {
     form_agenda.submit()
 }
 
-function selecionarData(btselecionado) {
+function selectDate(btselecionado) {
     for(let button of document.querySelectorAll("button")){
         if(button === btselecionado){
             button.className = "selecionado"
