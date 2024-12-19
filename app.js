@@ -30,24 +30,24 @@ app.get("/", (req, res)=>{
 app.post("/agenda", (req, res)=>{
     let body = req.body
     let id = body.id
-    let data = body.data
-    let horario = body.horario
-    let descricao = body.descricao
+    let date = body.date
+    let hour = body.hour
+    let description = body.description
 
-    if ((horario == undefined || horario == "") && (descricao == undefined || descricao == "") &&( id == undefined || id == "") && (data != undefined && data != "")) {
-        showRecords(res, data)
+    if ((hour == undefined || hour == "") && (description == undefined || description == "") &&( id == undefined || id == "") && (date != undefined && date != "")) {
+        showRecords(res, date)
     }
 
-    if((horario != undefined && horario != "") && (descricao != undefined && descricao != "") && (data != undefined && data != "") && (id == undefined || id == "")){
-        insertRecords(data, horario, descricao, ()=>{showRecords(res, data)})
+    if((hour != undefined && hour != "") && (description != undefined && description != "") && (date != undefined && date != "") && (id == undefined || id == "")){
+        insertRecords(date, hour, description, ()=>{showRecords(res, date)})
     }
 
-    if((horario != undefined && horario != "") && (descricao != undefined && descricao != "") && (data != undefined && data != "") && (id != undefined && id != "")){
-        updateRecords(id, horario, descricao, ()=>{showRecords(res, data)})
+    if((hour != undefined && hour != "") && (description != undefined && description != "") && (date != undefined && date != "") && (id != undefined && id != "")){
+        updateRecords(id, hour, description, ()=>{showRecords(res, date)})
     }
 
-    if((horario == undefined || horario == "") && (descricao == undefined || descricao == "") && (id != undefined && id != "") && (data != undefined && data != "")){
-        deleteRecords(id, ()=>showRecords(res, data))
+    if((hour == undefined || hour == "") && (description == undefined || description == "") && (id != undefined && id != "") && (date != undefined && date != "")){
+        deleteRecords(id, ()=>showRecords(res, date))
     }
 })
 

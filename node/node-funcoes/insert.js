@@ -1,16 +1,16 @@
 const Registros = require("../node-db/Records")
 const {randomBytes} = require("crypto")
 
-function insertRecords(data, horario, descricao, callback) {
+function insertRecords(date, hour, description, callback) {
     Registros.create({
         id: randomBytes(10).toString("hex"),
-        data: data,
-        horario: horario,
-        descricao: descricao
+        data: date,
+        horario: hour,
+        descricao: description
     }).then(callback)
     .catch((err)=>{
         if(err.parent.errno == 1062){
-            inserirRegistroAgenda(data, horario, descricao, callback)
+            inserirRegistroAgenda(date, hour, description, callback)
         }else{
             console.log(err)
         }
