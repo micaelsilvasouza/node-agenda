@@ -1,6 +1,6 @@
 const {Sequelize, sequelize} = require("./conect-db")
 
-const Registro = sequelize.define("registros", {
+const Record = sequelize.define("registros", {
     id: {
         type: Sequelize.STRING,
         primaryKey: true
@@ -19,6 +19,4 @@ const Registro = sequelize.define("registros", {
     }
 })
 
-//Registro.sync()
-
-module.exports = Registro
+module.exports = Record

@@ -1,7 +1,7 @@
-const Registro = require("../node-db/Records");
+const Record = require("../node-db/Record");
 
 function updateRecords(id, hour, description, callback) {
-    Registro.update({horario: hour, descricao: description}, {where: {id: id}})
+    Record.update({horario: hour, descricao: description}, {where: {id: id}})
     .then(callback)
 }
 
