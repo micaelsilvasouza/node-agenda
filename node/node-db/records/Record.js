@@ -1,10 +1,14 @@
-const {Sequelize, sequelize} = require("./conect-db")
+const {Sequelize, sequelize} = require("../conect-db")
 
 const Record = sequelize.define("registros", {
     id: {
         type: Sequelize.STRING,
         primaryKey: true
     }, 
+
+    usuario:{
+        type: Sequelize.STRING,
+    },
 
     data: {
         type: Sequelize.DATEONLY
@@ -20,3 +24,5 @@ const Record = sequelize.define("registros", {
 })
 
 module.exports = Record
+
+//Record.sync({force: true})

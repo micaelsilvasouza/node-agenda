@@ -1,7 +1,8 @@
+{{>_header}}
 <h1>Agenda</h1>
 
 <link rel="stylesheet" href="css/calendar.css">
-<form id="form-agenda" action="./agenda" method="post" target="iframe-agenda">
+<form id="form-agenda" action="./registros" method="post" target="iframe-agenda">
     <input id="date-form" type="hidden" name="date">
     <input id="hour-form" type="hidden" name="hour">
     <input id="description-form" type="hidden" name="description">
@@ -59,5 +60,7 @@
         <iframe title="iframe-agenda" id="iframe-agenda" name="iframe-agenda"></iframe>
     </aside>
 </main>
+
+{{>_footer}}
 
 <script src="js/calendar.js"></script>

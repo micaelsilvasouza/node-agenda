@@ -1,9 +1,10 @@
-const Record = require("../node-db/Record")
+const Record = require("./Record")
 const {randomBytes} = require("crypto")
 
-function insertRecords(date, hour, description, callback) {
+function insertRecords(user, date, hour, description, callback) {
     Record.create({
         id: randomBytes(10).toString("hex"),
+        usuario: user,
         data: date,
         horario: hour,
         descricao: description

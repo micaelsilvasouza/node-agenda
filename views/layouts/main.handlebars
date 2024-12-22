@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registros</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <main>
-        {{{body}}}
-    </main>
+    
+    <div id="msgs">
+    {{#each success_msg}}
+        <span class="msg success_msg">{{this}}</span>
+    {{/each}}
+    {{#each error_msg}}
+        <span class="msg error_msg">{{this}}</span>
+    {{/each}}
+    {{#each error}}
+        <span class="msg error_msg">{{this}}</span>
+    {{/each}}
+    </div>
+   
+    {{{body}}}
+
 </body>
 </html>

@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar{
+    width: 0px;
+}
+
+header > h1{
+    font-size: 2.3em;
+}
+
+main{
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    height: calc(100dvh - 100px);
+}
+
+article{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 200vw;
+    height: 100%;
+}
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100%;
+}
+
+form{
+    width: 250px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px #000000a1;
+    border-radius: 10px;
+}
+
+form > h1{
+    font-size: 1.2em;
+    text-align: center;
+    padding: 15px;
+}
+
+form > div{
+    padding: 5px;
+}
+
+form label{
+    font-size: 0.6em;
+    font-weight: 700;
+    padding: 2px;
+}
+
+form input{
+    font-size: 0.8em;
+    width: 100%;
+    padding: 2px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+
+form button{
+    display: block;
+    background-color: transparent;
+    font-weight: 600;
+    margin: 5px auto;
+    width: 90%;
+    padding: 5px;
+    box-shadow: 0px 0px 2px #000000a1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: .2s;
+}
+
+form button:hover{
+    background-color: var(--cor1);
+    color: var(--cor6);
+}
+
+form > div:last-child{
+    text-align: center;
+}
+
+form > div:last-child > a{
+    color: var(--cor1);
+    font-size: 0.7em;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+form > div:last-child > a:hover{
+    text-decoration: underline;
+}
