@@ -1,6 +1,4 @@
 {{>_header}}
-<h1>Agenda</h1>
-
 <link rel="stylesheet" href="css/calendar.css">
 <form id="form-agenda" action="./registros" method="post" target="iframe-agenda">
     <input id="date-form" type="hidden" name="date">
@@ -26,7 +24,6 @@
                     <option value="11">Dezembro</option>
                 </select>
                 <select title="ano" id="sel-year"></select>
-                <button id="bt-show-records">registros</button>
             </div>
             <table>
                 <thead>
@@ -48,17 +45,20 @@
                 <input title="hora" type="time" id="hour-input" value="08:00" required>
             </div>
             <div>
-                <textarea placeholder="Digite uma registro" id="description-input"  maxlength="100" required></textarea>
+                <input type="text" placeholder="Digite uma registro" id="description-input"  maxlength="100" required>
             </div>
             <div>
-                <button type="submit" id="recorder">+</button>
+                <button type="submit" id="recorder">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                        <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="records-agenda">
+                <iframe title="iframe-agenda" id="iframe-agenda" name="iframe-agenda"></iframe>
             </div>
         </section>
     </article>
-    <aside id="records-agenda">
-        <button id="bt-hide-records">X</button>
-        <iframe title="iframe-agenda" id="iframe-agenda" name="iframe-agenda"></iframe>
-    </aside>
 </main>
 
 {{>_footer}}

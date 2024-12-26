@@ -19,24 +19,32 @@
         <div class='conteiner-register-time'>
             <input title='hora' type='time' value="{{this.dataValues.horario}}" disabled>
         </div>
-        <div>
-            <textarea maxlength='100' placeholder='Editar registro' disabled>{{this.dataValues.descricao}}</textarea>
+        <div class="conteiner-register-description">
+            <input type="text" maxlength='100' placeholder='Editar registro' disabled value="{{this.dataValues.descricao}}">
         </div>
         <div class="conteiner-buttons">
-            <button title="Editar" type="button" onclick="enableEdit(this)" ontouchend="enableEdit(this)">
+            <button class="enable-edit" title="Editar" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
                     <path d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/>
                 </svg>
             </button>
-            <button title="Excluir" type="button" onclick="sendDelete(this)" ontouchend="sendDelete(this)">
+            <button class="send-delete" title="Excluir" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
                     <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
                 </svg>
             </button>
         </div>
         <div class="conteiner-buttons">
-            <button title="button" type="button" onclick="sendUpdate(this)" ontouchend="sendUpdate(this)">Salvar</button>
-            <button title="button" type="button" onclick="disableEdit(this)" ontouchend="disableEdit(this)">Cancelar</button>
+            <button class="send-update" title="button" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                    <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                </svg>
+            </button>
+            <button class="disable-edit" title="button" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </button>
         </div>
     </section>
     {{else}}
@@ -45,3 +53,35 @@
 </main>
 
 <script src="js/records.js"></script>
+<script>
+    //A Criação dessa ação, foi feita pelo fato de, quando acontece o click no botão de editar, aparece um efeito de dois clicks, fazendo o botão de enviar a atualização também seja clicado.
+    //Apenas em celulares
+    if (navigator.userAgentData.moblie) {
+        for(let enable_edit of document.querySelectorAll(".enable-edit")){
+            enable_edit.addEventListener("touchend", enableEdit)
+        }
+        for(let enable_edit of document.querySelectorAll(".disable-edit")){
+            enable_edit.addEventListener("touchend", disableEdit)
+        }
+        for(let enable_edit of document.querySelectorAll(".send-update")){
+            enable_edit.addEventListener("touchend", sendUpdate)
+        }
+        for(let enable_edit of document.querySelectorAll(".send-delete")){
+            enable_edit.addEventListener("touchend", sendDelete)
+        }
+    }else{
+        for(let enable_edit of document.querySelectorAll(".enable-edit")){
+            enable_edit.addEventListener("click", enableEdit)
+        }
+        for(let enable_edit of document.querySelectorAll(".disable-edit")){
+            enable_edit.addEventListener("click", disableEdit)
+        }
+        for(let enable_edit of document.querySelectorAll(".send-update")){
+            enable_edit.addEventListener("click", sendUpdate)
+        }
+        for(let enable_edit of document.querySelectorAll(".send-delete")){
+            enable_edit.addEventListener("click", sendDelete)
+        }
+        
+    }
+</script>

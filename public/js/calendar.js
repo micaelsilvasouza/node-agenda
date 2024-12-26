@@ -31,21 +31,6 @@ window.onload = ()=>{
     loadCalendar()
 }
 
-//alterando estado de visualização das registros, quando a tela estiver em um tamanho menor
-bt_show_records.onclick = bt_show_records.ontouchend = ()=>{
-    if(innerWidth <= 630 && innerHeight <= 860){
-        records_agenda.style.width = "70dvw"
-        bt_hide_records.style.display = "inline"
-    }
-}
-
-bt_hide_records.onclick = bt_hide_records.ontouchend = ()=>{
-    if(innerWidth <= 630 && innerHeight <= 860){
-        records_agenda.style.width = "0px"
-        bt_hide_records.style.display = "none"
-    }
-}
-
 recorder.onclick = ()=>{
     date_form.value = `${current_date.getFullYear()}-${current_date.getMonth() + 1}-${current_date.getDate()}`
     hour_form.value = hour_input.value

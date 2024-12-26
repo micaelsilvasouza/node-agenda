@@ -6,8 +6,8 @@ const description = document.getElementById("description-form")
 var input_time_original_value = ""
 var textarea_original_value = ""
 
-function enableEdit(buttonElement) {
-    let conteiner_register = buttonElement.parentElement.parentElement
+function enableEdit() {
+    let conteiner_register = this.parentElement.parentElement
     let input_time = conteiner_register.children[0].children[0]
     let textarea = conteiner_register.children[1].children[0]
     let conteiner_buttons = [conteiner_register.children[2], conteiner_register.children[3]]
@@ -24,8 +24,8 @@ function enableEdit(buttonElement) {
     conteiner_buttons[1].style.display = "flex"
 }
 
-function disableEdit(buttonElement) {
-    let conteiner_register = buttonElement.parentElement.parentElement
+function disableEdit() {
+    let conteiner_register = this.parentElement.parentElement
     let input_time = conteiner_register.children[0].children[0]
     let textarea = conteiner_register.children[1].children[0]
     let conteiner_buttons = [conteiner_register.children[2], conteiner_register.children[3]]
@@ -40,8 +40,8 @@ function disableEdit(buttonElement) {
     conteiner_buttons[1].style.display = "none"
 }
 
-function sendUpdate(buttonElement) {
-    let conteiner_register = buttonElement.parentElement.parentElement
+function sendUpdate() {
+    let conteiner_register = this.parentElement.parentElement
     let input_time = conteiner_register.children[0].children[0]
     let textarea = conteiner_register.children[1].children[0]
 
@@ -56,8 +56,8 @@ function sendUpdate(buttonElement) {
     }
 }
 
-function sendDelete(buttonElement) {
-    let conteiner_register = buttonElement.parentElement.parentElement
+function sendDelete() {
+    let conteiner_register = this.parentElement.parentElement
     id.value = conteiner_register.getAttribute("id-registro")
     
     showMessage("Excluir Registro", "Excluir", "Cancelar", ()=>{form_agenda.submit()})

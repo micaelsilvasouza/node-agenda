@@ -1,27 +1,5 @@
 @charset "UTF-8";
 
-
-*{
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-main{
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-section{
-    background-color: white;
-    box-shadow: 0px 2px 5px #000000a1;
-    border-radius: 12px;
-    margin: 5px;
-}
-
 p{  
     text-align: center;
     width: 250px;
@@ -39,40 +17,14 @@ span{
 }
 
 .conteiner-message{
+    background-color: var(--cor6);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #000000a1;
     position: fixed;
     transform: translateX(-50%);
     top: -200px;
     left: 50%;
     transition: 1s;
-}
-
-.conteiner-register-time{
-    background-color: var(--cor1);
-    text-align: center;
-    padding: 5px;
-    width: 150px;
-    border-radius: 10px 10px 0px 0px;
-}
-
-input[type="time"]{
-    background-color: transparent;
-    color: white;
-    width: 82px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
-textarea{
-    background-color: transparent;
-    width: 150px;
-    height: 100px;
-    padding: 5px;
-    text-align: center;
-    font-size: 12px;
-    resize: none;
-    border: none;
-    outline: none;
 }
 
 .conteiner-buttons{
@@ -81,7 +33,7 @@ textarea{
 }
 
 .conteiner-buttons > button{
-    color: white;
+    color: var(--cor6);
     font-size: 16px;
     width: 50%;
     height: 35px;
@@ -115,4 +67,63 @@ textarea{
 
 .conteiner-buttons > button:last-child:active{
     background-color: var(--cor4);
+}
+
+.conteiner-register{
+    display: flex;
+    align-items: center;
+    width: 300px;
+    margin-top: 5px;
+}
+
+.conteiner-register-time{
+    width: 65px;
+    text-align: center;
+}
+
+input[type="time"]{
+    width: 100%;
+    background-color: transparent;
+    font-size: 0.7em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="text"]{
+    font-size: 0.7em;
+    text-align: left;
+    resize: none;
+    width: 160px;
+    margin: 0 2.5px;
+    padding: 5px;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+}
+
+input[type="time"]:disabled, input[type="text"]:disabled{
+    background-color: transparent;
+    color: var(--cor5);
+}
+
+input[type="text"]:focus{
+    outline: 1px solid var(--cor5);
+}
+
+.conteiner-register .conteiner-buttons{
+    width: 70px;
+    border: none;
+}
+
+.conteiner-register .conteiner-buttons:last-of-type{
+    display: none;
+}
+
+.conteiner-register .conteiner-buttons > button{
+    border-radius: 0px;
+}
+
+.conteiner-register .conteiner-buttons > button:hover > svg{
+    transform: scale(1.1);
 }

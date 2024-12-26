@@ -82,6 +82,11 @@ app.use((req, res, next)=>{
     next()
 })
 
+//Página principal
+app.get("/", (req, res)=>{
+    res.render("landing")
+})
+
 //Página do calendário
 app.get("/agenda", isAuthenticated ,(req, res)=>{
     res.render("calendar", {nav: {link: "/logout", title: "LOGOUT"}})

@@ -8,9 +8,9 @@
 
 :root{
     --cor1: #D9A54C;
-    --cor2: #63D94C;
+    --cor2: #e0c630;
     --cor3: #ff0000dc;
-    --cor4: #4C8FD9;
+    --cor4: #d94c4c;
     --cor5: #000;
     --cor6: #fff;
 }
@@ -28,11 +28,11 @@
 }
 
 header{
+    background-color: var(--cor1);
+    color: var(--cor6);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var(--cor5);
-    margin: 0px 10px;
 }
 
 header > h1{
@@ -46,7 +46,7 @@ header > nav{
 }
 
 header > nav > a{
-    color: var(--cor5);
+    color: var(--cor6);
     text-decoration: none;
     font-size: 0.8em;
     padding: 5px;
@@ -55,11 +55,11 @@ header > nav > a{
 }
 
 header > nav > a:hover{
-    border-color: var(--cor5);
+    border-color: var(--cor6);
 }
 
 header > nav > a:active{
-    border-color: var(--cor5);
+    border-color: var(--cor6);
 }
 
 #msgs{
@@ -96,4 +96,6 @@ footer{
     text-align: center;
     width: 100vw;
     padding: 5px;
+    position: absolute;
+    bottom: 0;    
 }
