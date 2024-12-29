@@ -1,66 +1,62 @@
-{{>_header}}
 <link rel="stylesheet" href="css/calendar.css">
 <form id="form-agenda" action="./registros" method="post" target="iframe-agenda">
     <input id="date-form" type="hidden" name="date">
     <input id="hour-form" type="hidden" name="hour">
     <input id="description-form" type="hidden" name="description">
 </form>
-<main>
-    <article>
-        <section>
-            <div>
-                <select id="sel-month" title="meses">
-                    <option value="00" selected>Janeiro</option>
-                    <option value="01">Fevereiro</option>
-                    <option value="02">Março</option>
-                    <option value="03">Abril</option>
-                    <option value="04">Maio</option>
-                    <option value="05">Junho</option>
-                    <option value="06">Julho</option>
-                    <option value="07">Agosto</option>
-                    <option value="08">Setembro</option>
-                    <option value="09">Outubro</option>
-                    <option value="10">Novembro</option>
-                    <option value="11">Dezembro</option>
-                </select>
-                <select title="ano" id="sel-year"></select>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>DOM</th>
-                        <th>SEG</th>
-                        <th>TER</th>
-                        <th>QUA</th>
-                        <th>QUI</th>
-                        <th>SEX</th>
-                        <th>SAB</th>
-                    </tr>
-                </thead>
-                <tbody id="days"></tbody>
-            </table>
-        </section>
-        <section id="conteiner-add-register"> <!--Mudar nota para registro em todos os lugares-->
-            <div>
-                <input title="hora" type="time" id="hour-input" value="08:00" required>
-            </div>
-            <div>
-                <input type="text" placeholder="Digite uma registro" id="description-input"  maxlength="100" required>
-            </div>
-            <div>
-                <button type="submit" id="recorder">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
-                        <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
-                    </svg>
-                </button>
-            </div>
-            <div id="records-agenda">
-                <iframe title="iframe-agenda" id="iframe-agenda" name="iframe-agenda"></iframe>
-            </div>
-        </section>
-    </article>
-</main>
 
-{{>_footer}}
+<article>
+    <section>
+        <div>
+            <select id="sel-month" title="meses">
+                <option value="00" selected>Janeiro</option>
+                <option value="01">Fevereiro</option>
+                <option value="02">Março</option>
+                <option value="03">Abril</option>
+                <option value="04">Maio</option>
+                <option value="05">Junho</option>
+                <option value="06">Julho</option>
+                <option value="07">Agosto</option>
+                <option value="08">Setembro</option>
+                <option value="09">Outubro</option>
+                <option value="10">Novembro</option>
+                <option value="11">Dezembro</option>
+            </select>
+            <select title="ano" id="sel-year"></select>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>DOM</th>
+                    <th>SEG</th>
+                    <th>TER</th>
+                    <th>QUA</th>
+                    <th>QUI</th>
+                    <th>SEX</th>
+                    <th>SAB</th>
+                </tr>
+            </thead>
+            <tbody id="days"></tbody>
+        </table>
+    </section>
+    <section id="conteiner-add-register"> <!--Mudar nota para registro em todos os lugares-->
+        <div>
+            <input title="hora" type="time" id="hour-input" value="08:00" required>
+        </div>
+        <div>
+            <input type="text" placeholder="Digite uma registro" id="description-input"  maxlength="100" required>
+        </div>
+        <div>
+            <button type="submit" id="recorder">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                    <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
+                </svg>
+            </button>
+        </div>
+        <div id="records-agenda">
+            <iframe title="iframe-agenda" id="iframe-agenda" name="iframe-agenda"></iframe>
+        </div>
+    </section>
+</article>
 
 <script src="js/calendar.js"></script>

@@ -1,52 +1,48 @@
 <link rel="stylesheet" href="css/login.css">
- {{>_header}}
 
-<main>
-    <article >
-        <section id="login">
-            <form action="/validar-usuario" method="post">
-                <h1>Login</h1>
-                <div>
-                    <label for="email-login">Email</label>
-                    <input type="email" id="email-login" name="email" required>
-                </div>
-                <div>
-                    <label for="password-login">Senha</label>
-                    <input type="password" id="password-login" name="password" minlength="8" maxlength="20" required>
-                </div>
-                <div>
-                    <button type="submit">Entrar</button>
-                </div>
-                <div><a href="#register">Criar Cadastro</a></div>
-                
-            </form>
-        </section>
-        <section id="register">
-            <form action="/cadastrar-usuario" method="post">
-                <h1>Cadastrar</h1>
-                <div>
-                    <label for="username">Nome de Usuário</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div>
-                    <label for="email-register">Email</label>
-                    <input type="email" id="email-register" name="email" required>
-                </div>
-                <div>
-                    <label for="password-register">Senha</label>
-                    <input type="password" id="password-register" name="password" minlength="8" maxlength="20" required>
-                </div>
-                <div>
-                    <label for="confirm-password">Confirmar Senha</label>
-                    <input type="password" id="confirm-password" name="confirmpass" minlength="8" maxlength="20" required>
-                </div>
-                <div>
-                    <button type="submit">Cadastrar</button>
-                </div>
-                <div><a href="#login">Fazer Login</a></div>
-                
-            </form>
-        </section>
-    </article>
-</main>
-{{>_footer}}
+<article>
+    <section id="login">
+        <form action="/validar-usuario" method="post">
+            <h1>Login</h1>
+            <div>
+                <label for="email-login">Email</label>
+                <input type="email" id="email-login" name="email" required>
+            </div>
+            <div>
+                <label for="password-login">Senha</label>
+                <input type="password" id="password-login" name="password" minlength="8" maxlength="20" required>
+            </div>
+            <div>
+                <button type="submit">Entrar</button>
+            </div>
+            <div><a href="#register">Criar Cadastro</a></div>
+            
+        </form>
+    </section>
+    <section id="register">
+        <form action="/cadastrar-usuario" method="post">
+            <h1>Cadastrar</h1>
+            <div>
+                <label for="username">Nome de Usuário</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="email-register">Email</label>
+                <input type="email" id="email-register" name="email" required>
+            </div>
+            <div>
+                <label for="password-register">Senha</label>
+                <input type="password" id="password-register" name="password" minlength="8" maxlength="20" required>
+            </div>
+            <div>
+                <label for="confirm-password">Confirmar Senha</label>
+                <input type="password" id="confirm-password" name="confirmpass" minlength="8" maxlength="20" required>
+            </div>
+            <div>
+                <button type="submit">Cadastrar</button>
+            </div>
+            <div><a href="#login">Fazer Login</a></div>
+            
+        </form>
+    </section>
+</article>

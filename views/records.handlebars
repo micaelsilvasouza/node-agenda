@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="css/records.css">
 <form id="form-agenda" action="./registros" method="post">
-    <input type="hidden" name="date" value="{{data}}">
+    <input type="hidden" name="date" value="{{date}}">
     <input type="hidden" name="id" id="id-form">
     <input type="hidden" name="hour" id="hour-form">
     <input type="hidden" name="description" id="description-form">
@@ -14,13 +14,13 @@
             <button title="button" type="button" id="bt-B-message">Cancelar</button>
         </div>
     </section>
-    {{#each registros}}
-    <section class="conteiner-register" id-registro="{{this.dataValues.id}}">
+    {{#each records}}
+    <section class="conteiner-register" id-registro="{{this._id}}">
         <div class='conteiner-register-time'>
-            <input title='hora' type='time' value="{{this.dataValues.horario}}" disabled>
+            <input title='hora' type='time' value="{{this.hour}}" disabled>
         </div>
         <div class="conteiner-register-description">
-            <input type="text" maxlength='100' placeholder='Editar registro' disabled value="{{this.dataValues.descricao}}">
+            <input type="text" maxlength='100' placeholder='Editar registro' disabled value="{{this.description}}">
         </div>
         <div class="conteiner-buttons">
             <button class="enable-edit" title="Editar" type="button">
@@ -81,7 +81,6 @@
         }
         for(let enable_edit of document.querySelectorAll(".send-delete")){
             enable_edit.addEventListener("click", sendDelete)
-        }
-        
+        } 
     }
 </script>

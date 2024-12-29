@@ -11,14 +11,15 @@ const {validate} = require("email-validator")
 const {randomBytes, hash} = require("crypto")
 
 //Funções usuário
-const User = require("./node/node-db/users/User")
-const {insertUser} = require("./node/node-db/users/insert")
+const User = require("./mongodb/users/User")
+const {insertUser} = require("./mongodb/users/insert")
 
 //Funções agenda
-const {showRecords} = require("./node/node-db/records/select")
-const {insertRecords} = require("./node/node-db/records/insert")
-const {updateRecords} = require("./node/node-db/records/update")
-const {deleteRecords}= require("./node/node-db/records/delete")
+const {showRecords} = require("./mongodb/records/select")
+const {insertRecords} = require("./mongodb/records/insert")
+const {updateRecords} = require("./mongodb/records/update")
+const {deleteRecords}= require("./mongodb/records/delete")
+const { allowedNodeEnvironmentFlags } = require("process")
 
 //Configurando sessões
 app.use(session({
@@ -47,15 +48,17 @@ app.use(express.static("public"))
 
 //Configurando Strategy
 passport.use(new localStrategy({usernameField: "email"}, (email, password, done)=>{
-    User.findAll({attributes: ["id", "senha"], where: {email: email}}).then(user=>{
-        if(user.length > 0 && hash("sha1", password) === user[0].dataValues.senha){
-            done(null, user[0].dataValues)
-        }else{
-            done(null, false, {message: "Usuário ou senha incorretos"})
-        }
-    }).catch(err=>{
-        done(err, false, {message: "Ocorreu um erro ao realizar a autenticação"})
-    })
+    if(validate(email)){
+        User.find({email: email}).then(data => {
+            if(data.length > 0 && hash("sha1", password) === data[0].password){
+                done(null, data[0])
+            }else{
+                done(null, false, {message: "Usuário ou senha incorretos"})
+            }
+        })
+    }else{
+        done(null, false, {message: "Email inválido"})
+    }
 }))
 
 passport.serializeUser((user, done)=>{
@@ -87,20 +90,20 @@ app.get("/", (req, res)=>{
     res.render("landing")
 })
 
-//Página do calendário
-app.get("/agenda", isAuthenticated ,(req, res)=>{
-    res.render("calendar", {nav: {link: "/logout", title: "LOGOUT"}})
-
-})
-
 //Página de login e fazer cadastro
 app.get("/login", (req, res)=>{
-    res.render("login")
+    res.render("login", {header: true, footer: true})
 })
 
+//Sair
 app.get("/logout", (req, res)=>{
     req.logout({keepSessionInfo: false}, (err)=>{req.flash("error_msg", "Houve um erro ao realizar o logout")})
     res.redirect("/login")
+})
+
+//Página do calendário
+app.get("/agenda", isAuthenticated ,(req, res)=>{
+    res.render("calendar", {nav: {link: "/logout", title: "LOGOUT"}, header: true, footer: true})
 })
 
 //Ações da agenda
@@ -111,21 +114,59 @@ app.post("/registros", isAuthenticated, (req, res)=>{
     let date = body.date
     let hour = body.hour
     let description = body.description
-
-    if ((hour == undefined || hour == "") && (description == undefined || description == "") &&( id == undefined || id == "") && (date != undefined && date != "")) {
-        showRecords(res, user.id, date)
+    
+    if ((hour == undefined || hour == "") && (description == undefined || description == "") &&( id == undefined) && (date != undefined && date != "")) {
+        showRecords(user._id, date, 
+            (data)=>{
+                res.render("records", {date: date, records: data})
+            },
+            ()=>{req.flash("error_msg", "Erro ao buscar registros")}
+        )
     }
+    
+    if((hour != undefined && hour != "") && (description != undefined && description != "") && (date != undefined && date != "") && (id == undefined)){
+        insertRecords(user._id, date, hour, description, 
+            //successfunc
+            () => {
+                showRecords(user._id, date, 
+                    (data)=>{res.render("records", {date: date, records: data})},
+                    ()=>{req.flash("error_msg", "Erro ao buscar registros")}
+                )
+            }, 
 
-    if((hour != undefined && hour != "") && (description != undefined && description != "") && (date != undefined && date != "") && (id == undefined || id == "")){
-        insertRecords(user.id,date, hour, description, ()=>{showRecords(res, user.id, date)})
+            //failedfunc
+            ()=>{req.flash("error_msg", "Erro ao inserir registro")}
+        )
     }
+    
+    if((hour != undefined && hour != "") && (description != undefined && description != "") && (date != undefined && date != "") && (id != undefined)){
+        updateRecords(id, user._id, hour, description,
+            //successfunc
+            ()=>{
+                showRecords(user._id, date, 
+                    (data)=>{res.render("records", {date: date, records: data})},
+                    ()=>{req.flash("error_msg", "Erro ao buscar registros")}
+                )
+            },
 
-    if((hour != undefined && hour != "") && (description != undefined && description != "") && (date != undefined && date != "") && (id != undefined && id != "")){
-        updateRecords(id, user.id,hour, description, ()=>{showRecords(res, user.id,date)})
+            //failedfunc
+            ()=>{req.flash("error_msg", "Erro ao atualizar registro")}
+        )
+        
     }
+    if((hour == undefined || hour == "") && (description == undefined || description == "") && (id != undefined) && (date != undefined && date != "")){
+        deleteRecords(id, user._id,
+            //successfunc
+            ()=>{
+                showRecords(user._id, date, 
+                    (data)=>{res.render("records", {date: date, records: data})},
+                    ()=>{req.flash("error_msg", "Erro ao buscar registros")}
+                )
+            },
 
-    if((hour == undefined || hour == "") && (description == undefined || description == "") && (id != undefined && id != "") && (date != undefined && date != "")){
-        deleteRecords(id, user.id, ()=>showRecords(res, user.id,date))
+            //failedfunc
+            ()=>{req.flash("error_msg", "Erro ao deletar registro")}
+        )
     }
 })
 
@@ -162,12 +203,22 @@ app.post("/cadastrar-usuario", (req, res)=>{
     if(error){
         res.redirect("/login#register")
     }else{
-        User.findAll({where: {email: email}}).then(data=>{
+        User.find({email: email}).then(data=>{
             if(data.length > 0){
-                req.flash("error_msg", "Email já cadastrado")
+                req.flash("success_msg", "Email já cadastrado")
                 res.redirect("/login#register")
             }else{
-                insertUser(req, res, username, email, password)
+                insertUser(username, email, password, 
+                    ()=>{
+                        req.flash("error_msg", "Usuário cadastrado com sucesso.")
+                        res.redirect("/login")
+                    },
+
+                    ()=>{
+                        req.flash("error_msg", "Falha ao registrar usuário.")
+                        res.redirect("/login#register")
+                    }
+            )   
             }
         })
     }

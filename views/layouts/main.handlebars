@@ -7,20 +7,27 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
-    <div id="msgs">
-    {{#each success_msg}}
-        <span class="msg success_msg">{{this}}</span>
-    {{/each}}
-    {{#each error_msg}}
-        <span class="msg error_msg">{{this}}</span>
-    {{/each}}
-    {{#each error}}
-        <span class="msg error_msg">{{this}}</span>
-    {{/each}}
-    </div>
-   
-    {{{body}}}
+    {{#if header}}
+        {{>_header}}
+    {{/if}}
 
+    <main>
+        <div id="msgs">
+        {{#each success_msg}}
+            <span class="msg success_msg">{{this}}</span>
+        {{/each}}
+        {{#each error_msg}}
+            <span class="msg error_msg">{{this}}</span>
+        {{/each}}
+        {{#each error}}
+            <span class="msg error_msg">{{this}}</span>
+        {{/each}}
+        </div>
+
+        {{{body}}}
+    </main>
+    {{#if footer}}
+        {{>_footer}}
+    {{/if}}
 </body>
 </html>

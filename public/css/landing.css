@@ -21,30 +21,30 @@ section{
     height: 100%;
 }
 
-section:first-child{
+section:first-of-type{
     align-items: flex-start;
     background-color: var(--cor1);
     color: var(--cor6);
     padding: 50px;
 }
 
-section:first-child h1{
+section:first-of-type h1{
     font-size: 2.5em;
     font-variant: small-caps;
     padding: 10px;
 }
 
-section:first-child p{
+section:first-of-type p{
     text-align: justify;
     padding: 10px;
 }
 
-section:last-child{
+section:last-of-type{
     background-color: var(--cor6);
     flex-direction: row;
 }
 
-div{
+.conteiner-route{
     text-align: center;
     width: 200px;
     height: 130px;
